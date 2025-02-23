@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq8265toxmcqh"]
+
+[ext_resource type="Script" path="res://ball.gd" id="1_vk16r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqugt"]
+size = Vector2(32, 32)
+
+[node name="Ball" type="RigidBody2D" groups=["ball"]]
+process_mode = 4
+collision_layer = 2
+collision_mask = 7
+gravity_scale = 0.0
+linear_damp_mode = 1
+script = ExtResource("1_vk16r")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-16, 16)
+scale = Vector2(0.5, 0.5)
+color = Color(0, 0, 0, 1)
+antialiased = true
+polygon = PackedVector2Array(0, -24, 0, -40, 8, -56, 24, -64, 40, -64, 56, -56, 64, -40, 64, -24, 56, -8, 40, 0, 24, 0, 8, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_iqugt")

@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbwenmdqnatkb"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_1ce2o"]
+[ext_resource type="PackedScene" uid="uid://btv7jq1mwn3vw" path="res://wall.tscn" id="1_mktae"]
+[ext_resource type="PackedScene" uid="uid://bq8265toxmcqh" path="res://ball.tscn" id="2_xotb5"]
+[ext_resource type="PackedScene" uid="uid://cw52elds5h8mr" path="res://moving_wall.tscn" id="3_vgts4"]
+[ext_resource type="PackedScene" uid="uid://bpmk1aisafyh6" path="res://hud.tscn" id="5_y4mhn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m740m"]
+size = Vector2(432, 520)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_1ce2o")
+ball_scene = ExtResource("2_xotb5")
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Wall" parent="." instance=ExtResource("1_mktae")]
+
+[node name="MovingWall" parent="." instance=ExtResource("3_vgts4")]
+position = Vector2(512, 320)
+
+[node name="WinArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinArea"]
+position = Vector2(280, 324)
+shape = SubResource("RectangleShape2D_m740m")
+
+[node name="HUD" parent="." instance=ExtResource("5_y4mhn")]
+
+[node name="Balls" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Balls"]
+position = Vector2(688, 144)
+
+[node name="Marker2D2" type="Marker2D" parent="Balls"]
+position = Vector2(984, 120)
+
+[node name="Marker2D3" type="Marker2D" parent="Balls"]
+position = Vector2(928, 472)
+
+[node name="Marker2D4" type="Marker2D" parent="Balls"]
+position = Vector2(272, 280)
+
+[node name="Marker2D5" type="Marker2D" parent="Balls"]
+position = Vector2(392, 104)
+
+[node name="Marker2D6" type="Marker2D" parent="Balls"]
+position = Vector2(104, 144)
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="body_entered" from="WinArea" to="." method="_on_win_area_body_entered"]
+[connection signal="body_exited" from="WinArea" to="." method="_on_win_area_body_exited"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]

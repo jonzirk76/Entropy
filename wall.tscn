@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://btv7jq1mwn3vw"]
+
+[node name="Wall" type="StaticBody2D"]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648, 0, 64, 64, 64, 64, 584, 1088, 584, 1088, 64, 0, 64)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.433442, 9.98713e-07, 1.92523e-07, 1)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648, 0, 64, 64, 64, 64, 584, 1088, 584, 1088, 64, 0, 64)
